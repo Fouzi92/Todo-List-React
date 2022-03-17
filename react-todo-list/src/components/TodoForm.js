@@ -20,23 +20,40 @@ function TodoForm(props) {
       id: Math.floor(Math.random() * 10000),
       text: input,
     });
-
     setInput("");
   };
 
   return (
-    <form className="todo-form" onSubmit={handleSubmit}>
-      {props.edit}
-      <input
-        type="text"
-        placeholder="À faire"
-        value={input}
-        name="text"
-        className="todo-input"
-        onChange={handleChange}
-        ref={inputRef}
-      />
-      <button className="tudo-button">tache</button>
+    <form onSubmit={handleSubmit} className="todo-form">
+      {props.edit ? (
+        <>
+          <input
+            placeholder="Àjouter"
+            value={input}
+            onChange={handleChange}
+            name="text"
+            ref={inputRef}
+            className="todo-input edit"
+          />
+          <button onClick={handleSubmit} className="todo-button edit">
+            Àjouter
+          </button>
+        </>
+      ) : (
+        <>
+          <input
+            placeholder="À faire"
+            value={input}
+            onChange={handleChange}
+            name="text"
+            className="todo-input"
+            ref={inputRef}
+          />
+          <button onClick={handleSubmit} className="todo-button">
+            Àjouter
+          </button>
+        </>
+      )}
     </form>
   );
 }
